@@ -1,22 +1,22 @@
 import os
 from pathlib import Path
 
-POEM = """The Rope
+# A passing pen turns two signatures into one shared promise.
+POEM = """The Signature
 
-Heave, you said. Heave, I said.
-The rope went taut between us
-and the boat began to move.
-Neither of us pulled alone.
-We pulled on the same count.
-When it touched the shore
-we stood with the same rope-burn
-in both our palms."""
+Two names, one line.
+You sign first, I sign second —
+neither of us owns the line,
+we only share it.
+The pen passes hand to hand,
+and the paper holds
+what neither of us could promise alone."""
 
-OUTPUT = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")) / "entry.txt"
-OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-OUTPUT.write_text(POEM, encoding="utf-8")
+output_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
+output_dir.mkdir(parents=True, exist_ok=True)
+entry = output_dir / "entry.txt"
+entry.write_text(POEM, encoding="utf-8")
 
-result = OUTPUT.read_text(encoding="utf-8")
-assert 1 <= len(result) <= 280
-assert result.strip()
-print(len(result))
+text = entry.read_text(encoding="utf-8")
+assert 1 <= len(text) <= 280 and text.strip()
+print(len(text))
